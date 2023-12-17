@@ -21,7 +21,7 @@ const theGirlNextDoor = The_Girl_Next_Door({
 
 export default function Home() {
 	return (
-		<main className="grid h-screen w-screen place-content-center">
+		<main className="grid justify-center p-10">
 			<Card className="bg-yellow-950 border-2 border-yellow-800">
 				<CardHeader>
 					<CardTitle>Welcome to...</CardTitle>
