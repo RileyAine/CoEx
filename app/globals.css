@@ -57,3 +57,7 @@
 		@apply bg-background text-foreground;
 	}
 }
+
+.card {
+	background-color: 'bg-yellow-950';
+}

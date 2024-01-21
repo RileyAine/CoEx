@@ -2,30 +2,34 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
+import { Toaster } from '@/components/ui/toaster';
+import Header from '@/components/header';
+import Footer from '@/components/footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
 	title: 'CoEx',
 	description: 'Communities sharing and cooperating together!',
-	authors: { name: 'Riley;>' },
+	authors: { name: 'Riley;>Wilkes' },
 	keywords: ['Community', 'Sharing', 'Farming', 'Collaborate', 'Together'],
 	icons: '/icon/ce_icon.png',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
+	// const session = await auth();
+	//console.log(session);
 	return (
 		<html lang="en">
-			<body
-				className={cn(
-					inter.className,
-					'h-screen w-screen place-content-center dark'
-				)}>
+			<body className={cn(inter.className, 'h-screen w-screen dark p-4')}>
+				<Header />
 				{children}
+				<Footer />
+				<Toaster />
 			</body>
 		</html>
 	);
