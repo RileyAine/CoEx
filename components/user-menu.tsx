@@ -32,10 +32,6 @@ export default function UserMenu() {
 
 	function handleLogout() {
 		signOut({ callbackUrl: '/?method=signOut' });
-		toast({
-			title: 'Logged Out!',
-			description: 'You have been successfully logged out!',
-		});
 	}
 
 	if (status === 'authenticated') {

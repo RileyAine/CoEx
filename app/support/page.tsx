@@ -14,10 +14,12 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/components/ui/use-toast';
 import { supportFormSchema } from '@/lib/form-schema';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 export default function Support({ searchParams }: { searchParams: any }) {
+	const router = useRouter();
 	const { toast } = useToast();
 	let name: string | null = null;
 	if (searchParams.firstName && searchParams.lastName) {
@@ -43,7 +45,21 @@ export default function Support({ searchParams }: { searchParams: any }) {
 					'Content-Type': 'application/json',
 				},
 				body: JSON.stringify(values),
-			});
+			})
+				.then((onfullfilled) => {
+					console.log(onfullfilled);
+					if (onfullfilled.ok) {
+						router.push('/?method=messageSent');
+					}
+				})
+				.catch((onrejected) => {
+					console.log(onrejected);
+					toast({
+						title: 'Oops!',
+						description: onrejected.message,
+						variant: 'destructive',
+					});
+				});
 		} catch (error: any) {
 			toast({
 				title: 'Something went wrong!',

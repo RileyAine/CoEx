@@ -27,7 +27,7 @@ export const authOptions: NextAuthOptions = {
 				const { email, password, type } = credentials as User;
 				let result = null;
 				if (type === 'login') {
-					result = await fetch(api_users + email, {
+					result = await fetch(api_users + '/' + email, {
 						method: 'GET',
 						headers: { 'Content-Type': 'application/json' },
 					});

@@ -11,16 +11,19 @@ export default function Home({ searchParams }: { searchParams: any }) {
 		method = searchParams.method;
 	}
 
-	function displayToast(title: string, message: string) {
-		toast({
-			title: title,
-			description: message,
-		});
-	}
-
 	useEffect(() => {
-		if (method && method === 'signOut') {
-			displayToast('Logged Out!', 'You have been successfully logged out!');
+		if (method) {
+			if (method === 'signOut') {
+				toast({
+					title: 'Logged Out!',
+					description: 'You have been successfully logged out!',
+				});
+			} else if (method === 'messageSent') {
+				toast({
+					title: 'Success!',
+					description: 'Your message was sent successfully!',
+				});
+			}
 		}
 	}, []);
 
