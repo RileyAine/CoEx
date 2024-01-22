@@ -84,6 +84,7 @@ export const authOptions: NextAuthOptions = {
 			return session;
 		},
 	},
+	secret: process.env.NEXTAUTH_SECRET,
 } satisfies NextAuthOptions;
 
 // Use it in server contexts
