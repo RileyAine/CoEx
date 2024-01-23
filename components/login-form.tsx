@@ -1,20 +1,19 @@
 'use client';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
-	Card,
-	CardContent,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from '@/components/ui/card';
-import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormMessage,
+} from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { loginSchema } from '@/lib/form-schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { EyeNoneIcon, EyeOpenIcon } from '@radix-ui/react-icons';
 import { Label } from '@radix-ui/react-label';
 import { signIn } from 'next-auth/react';
-import Link from 'next/link';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
@@ -56,7 +55,7 @@ export default function LoginForm() {
 		<Card className="bg-yellow-950 border-2 border-yellow-800">
 			<CardHeader>
 				<CardTitle className="grid justify-center">
-					<Label>{'Login'}</Label>
+					<Label>{'Log In'}</Label>
 				</CardTitle>
 			</CardHeader>
 			<CardContent>
@@ -79,6 +78,7 @@ export default function LoginForm() {
 											{...field}
 										/>
 									</FormControl>
+									<FormMessage />
 								</FormItem>
 							)}></FormField>
 						<FormField
@@ -115,6 +115,7 @@ export default function LoginForm() {
 											}}
 										/>
 									)}
+									<FormMessage />
 								</FormItem>
 							)}></FormField>
 						<section className="justify-self-center">

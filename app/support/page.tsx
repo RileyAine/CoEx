@@ -47,13 +47,11 @@ export default function Support({ searchParams }: { searchParams: any }) {
 				body: JSON.stringify(values),
 			})
 				.then((onfullfilled) => {
-					console.log(onfullfilled);
 					if (onfullfilled.ok) {
 						router.push('/?method=messageSent');
 					}
 				})
 				.catch((onrejected) => {
-					console.log(onrejected);
 					toast({
 						title: 'Oops!',
 						description: onrejected.message,

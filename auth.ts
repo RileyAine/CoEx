@@ -49,12 +49,12 @@ export const authOptions: NextAuthOptions = {
 				const user: User = await result?.json();
 				// Return null if user data could not be retrieved
 				if (result?.status === 400 || !user) {
-					return null;
+					throw Error('User data not found!');
 				}
 				// If password entered does not equal hashed password, return null
 				const isPasswordValid = await verifyPassword(password, user.password);
 				if (!isPasswordValid) {
-					return null;
+					throw Error('Password does not match!');
 				}
 				// If no error and we have user data, return every property except password
 				const { password: omittedPassword, ...userReturned } = { ...user };

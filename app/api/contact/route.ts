@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
 
-function htmlEmail(message: string): string {
-	let finalMessage = '<h1>Support Message</h1><p>' + message + '<p>';
+function htmlEmail(name: string, email: string, message: string): string {
+	let finalMessage = `<h1>Support Message</h1>
+		<p>${message}<p>
+		<a href="mailto:${email}">Reply to ${name}</a>`;
 	return finalMessage;
 }
 
@@ -26,7 +28,7 @@ export async function POST(request: Request) {
 		to: process.env.SUPPORT_TO_EMAIL,
 		subject: 'Message from ' + name,
 		text: message,
-		html: htmlEmail(message),
+		html: htmlEmail(name, email, message),
 	};
 	transporter.sendMail(mailOptions, function (err: any, info: any) {
 		if (err) {
