@@ -4,24 +4,13 @@ import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
 import { The_Girl_Next_Door } from 'next/font/google';
-import { useEffect } from 'react';
 
 const theGirlNextDoor = The_Girl_Next_Door({
 	subsets: ['latin'],
 	weight: '400',
 });
-export default function Error({
-	error,
-	reset,
-}: {
-	error: Error & { digest?: string };
-	reset: () => void;
-}) {
-	useEffect(() => {
-		// Log the error to an error reporting service
-		console.error(error);
-	}, [error]);
-
+export default function Error({ searchParams }: { searchParams: any }) {
+	let error = searchParams?.error ?? null;
 	return (
 		<main className="grid justify-items-center px-2 pt-6 mt-6 gap-8">
 			<Separator />
@@ -35,6 +24,11 @@ export default function Error({
 			<Label className="text-base md:text-lg">
 				Something bad happened. Try doing that again.
 			</Label>
+			{error && (
+				<Label className="text-base md:text-lg">
+					Possibly helpful: {error}
+				</Label>
+			)}
 			<Label className="text-base md:text-lg pl-3 pb-0">
 				Thank you for visiting
 			</Label>

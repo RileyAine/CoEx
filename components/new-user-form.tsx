@@ -13,14 +13,16 @@ import { newUserSchema } from '@/lib/form-schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { EyeNoneIcon, EyeOpenIcon } from '@radix-ui/react-icons';
 import { Label } from '@radix-ui/react-label';
-import { signIn } from 'next-auth/react';
+import { SignInResponse, signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { useToast } from './ui/use-toast';
+import { useRouter } from 'next/navigation';
 
 export default function NewUserForm() {
+	const router = useRouter();
 	const { toast } = useToast();
 	const [isPasswordShown, setIsPasswordShown] = useState(false);
 
@@ -44,7 +46,19 @@ export default function NewUserForm() {
 				firstName: values.firstName,
 				lastName: values.lastName,
 				type: 'new-user',
-				callbackUrl: '/dashboard',
+				redirect: false,
+			}).then((onfullfilled: SignInResponse | undefined) => {
+				if (onfullfilled) {
+					if (onfullfilled.ok) {
+						router.push('/dashboard');
+					} else {
+						toast({
+							title: 'Something went wrong!',
+							description: onfullfilled.error,
+							variant: 'destructive',
+						});
+					}
+				}
 			});
 		} catch (error: any) {
 			toast({

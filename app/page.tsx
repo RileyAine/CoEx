@@ -7,8 +7,12 @@ import { Toaster } from '@/components/ui/toaster';
 export default function Home({ searchParams }: { searchParams: any }) {
 	const { toast } = useToast();
 	let method: any = null;
+	let error: any = null;
 	if (searchParams.method) {
 		method = searchParams.method;
+	}
+	if (searchParams.error) {
+		error = searchParams.error;
 	}
 
 	useEffect(() => {
@@ -24,6 +28,13 @@ export default function Home({ searchParams }: { searchParams: any }) {
 					description: 'Your message was sent successfully!',
 				});
 			}
+		}
+		if (error) {
+			toast({
+				title: 'Oops! Something went wrong!',
+				description: 'Error: ' + error,
+				variant: 'destructive',
+			});
 		}
 	}, []);
 

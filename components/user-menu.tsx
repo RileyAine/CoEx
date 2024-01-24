@@ -17,7 +17,6 @@ import {
 	DropdownMenuShortcut,
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useToast } from './ui/use-toast';
 import {
 	Tooltip,
 	TooltipContent,
@@ -26,7 +25,6 @@ import {
 } from './ui/tooltip';
 
 export default function UserMenu() {
-	const { toast } = useToast();
 	const { status, data } = useSession();
 	const user = data?.user as UserModel;
 

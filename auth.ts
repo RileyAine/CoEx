@@ -48,8 +48,8 @@ export const authOptions: NextAuthOptions = {
 				}
 				const user: User = await result?.json();
 				// Return null if user data could not be retrieved
-				if (result?.status === 400 || !user) {
-					throw Error('User data not found!');
+				if (result?.status === 400) {
+					throw Error('User already exists!');
 				}
 				// If password entered does not equal hashed password, return null
 				const isPasswordValid = await verifyPassword(password, user.password);
@@ -64,6 +64,7 @@ export const authOptions: NextAuthOptions = {
 	],
 	pages: {
 		signIn: '/login',
+		error: '/', // Error code passed in query string as ?error=
 	},
 	session: {
 		strategy: 'jwt',
