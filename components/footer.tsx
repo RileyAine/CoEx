@@ -2,13 +2,13 @@ import { Label } from './ui/label';
 
 export default function Footer() {
 	return (
-		<main>
-			<Label className="absolute bottom-5 text-sm pt-4">
+		<footer className="border-t-2">
+			<Label className="grid text-sm pt-2 pl-2">
 				© 2024 {process.env.NEXT_PUBLIC_SITE_TITLE}. All rights reserved.
 			</Label>
-			<Label className="absolute bottom-0 right-0 text-xs pt-4">
+			<Label className="grid justify-self-end justify-end text-xs">
 				{process.env.NEXT_PUBLIC_APP_VERSION}
 			</Label>
-		</main>
+		</footer>
 	);
 }

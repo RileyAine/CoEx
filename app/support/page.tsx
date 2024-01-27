@@ -69,7 +69,7 @@ export default function Support({ searchParams }: { searchParams: any }) {
 	}
 
 	return (
-		<main className="grid px-2 py-6 text-orange-100 justify-items-center ">
+		<main className="grid px-4 text-orange-100 justify-items-center ">
 			<div className="grid gap-4 w-full md:w-5/6 lg:w-4/6 xl:w-3/6 2xl:w-2/6">
 				<Label className="text-2xl justify-self-center">
 					Question or Comment?

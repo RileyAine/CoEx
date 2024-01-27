@@ -18,6 +18,10 @@ module.exports = {
 			},
 		},
 		extend: {
+			gridTemplateRows: {
+				'site-layout': 'auto 1fr auto',
+				'mobile-layout': 'auto 1fr auto',
+			},
 			fontFamily: {
 				sans: ['var(--font-sans)', ...fontFamily.sans],
 			},

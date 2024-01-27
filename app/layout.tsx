@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,10 +26,14 @@ export default async function RootLayout({
 	//console.log(session);
 	return (
 		<html lang="en">
-			<body className={cn(inter.className, 'h-screen w-screen dark p-4')}>
-				<Header />
-				{children}
-				<Footer />
+			<body className={cn(inter.className, ' grid dark')}>
+				<main className="grid grid-rows-mobile-layout md:grid-rows-site-layout  overflow-hidden h-screen">
+					<Header />
+					<ScrollArea className="z-0 rounded overflow-auto">
+						{children}
+					</ScrollArea>
+					<Footer />
+				</main>
 				<Toaster />
 			</body>
 		</html>

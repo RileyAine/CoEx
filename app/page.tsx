@@ -36,12 +36,12 @@ export default function Home({ searchParams }: { searchParams: any }) {
 				variant: 'destructive',
 			});
 		}
-	}, [error, method, toast]);
+	}, []);
 
 	return (
 		<main className="grid justify-center gap-8">
 			<ComingSoon />
-			<Toaster></Toaster>
+			<Toaster />
 		</main>
 	);
 }

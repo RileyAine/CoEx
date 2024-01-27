@@ -42,8 +42,8 @@ export default function LoginForm() {
 				email: values.email,
 				password: values.password,
 				type: 'login',
-				redirect: false,
-			}).then((onfullfilled: SignInResponse | undefined) => {
+				callbackUrl: '/dashboard',
+			}); /* .then((onfullfilled: SignInResponse | undefined) => {
 				if (onfullfilled) {
 					if (onfullfilled.ok) {
 						router.push('/dashboard');
@@ -55,7 +55,7 @@ export default function LoginForm() {
 						});
 					}
 				}
-			});
+			}); */
 		} catch (error: any) {
 			toast({
 				title: 'Something went wrong!',

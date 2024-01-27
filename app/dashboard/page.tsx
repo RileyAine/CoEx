@@ -24,7 +24,7 @@ export default async function Dashboard() {
 		user = session.user as UserModel;
 	}
 	return (
-		<main className="grid justify-items-center px-2 pt-6 mt-6 gap-8">
+		<main className="grid justify-items-center px-4 gap-8">
 			{user && (
 				<Card className="bg-yellow-950 border-yellow-800 text-2xl border-2 w-full md:w-5/6 lg:w-4/6 xl:w-3/6 2xl:w-2/6">
 					<CardHeader>

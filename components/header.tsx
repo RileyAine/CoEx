@@ -13,7 +13,7 @@ const theGirlNextDoor = The_Girl_Next_Door({
 
 export default function Header() {
 	return (
-		<main className="grid grid-cols-4 pb-3 mb-3 h-14">
+		<header className="grid grid-cols-4 py-2 mb-4 border-b-2 bg-background">
 			<Label
 				className={cn(
 					theGirlNextDoor.className,
@@ -26,6 +26,6 @@ export default function Header() {
 					<UserMenu />
 				</SessionProvider>
 			</article>
-		</main>
+		</header>
 	);
 }

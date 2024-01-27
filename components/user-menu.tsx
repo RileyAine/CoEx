@@ -48,7 +48,7 @@ export default function UserMenu() {
 				</DropdownMenuTrigger>
 				<DropdownMenuContent
 					align="end"
-					className="bg-yellow-950 border-yellow-800">
+					className="bg-yellow-900 border-yellow-800">
 					<DropdownMenuGroup>
 						<Link href="/dashboard">
 							<DropdownMenuItem>
@@ -86,14 +86,12 @@ export default function UserMenu() {
 		);
 	} else {
 		return (
-			<Link
-				href="/login"
-				className="absolute right-2">
+			<Link href="/login">
 				<TooltipProvider>
 					<Tooltip>
 						<TooltipTrigger asChild>
 							<Button
-								className="bg-yellow-950 mx-2 px-2 border-2 border-yellow-800"
+								className="bg-yellow-900 mx-2 px-2 border-2 border-yellow-800"
 								type="button">
 								<PersonIcon
 									width="20"
