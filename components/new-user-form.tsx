@@ -46,20 +46,23 @@ export default function NewUserForm() {
 				firstName: values.firstName,
 				lastName: values.lastName,
 				type: 'new-user',
-				redirect: false,
-			}).then((onfullfilled: SignInResponse | undefined) => {
+				callbackUrl: '/dashboard',
+			});
+			// Commenting this out because of the unexpected behavior: when a then is used against signIn, the behavior is taken away from the authorize function.
+			/* .then((onfullfilled: SignInResponse | undefined) => {
 				if (onfullfilled) {
 					if (onfullfilled.ok) {
 						router.push('/dashboard');
 					} else {
 						toast({
-							title: 'Something went wrong!',
-							description: onfullfilled.error,
+							title: 'Something returned wrong!',
+							description:
+								'This usually means that email is already associated with an account!',
 							variant: 'destructive',
 						});
 					}
 				}
-			});
+			}); */
 		} catch (error: any) {
 			toast({
 				title: 'Something went wrong!',
@@ -67,7 +70,6 @@ export default function NewUserForm() {
 				variant: 'destructive',
 			});
 		}
-		form.reset();
 	}
 
 	return (

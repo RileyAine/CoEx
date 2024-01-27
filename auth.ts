@@ -26,6 +26,8 @@ export const authOptions: NextAuthOptions = {
 				const api_users: string = process.env.API_USERS ?? '';
 				const { email, password, type } = credentials as User;
 				let result = null;
+				// console.log('credentials', credentials);
+
 				if (type === 'login') {
 					result = await fetch(api_users + '/' + email, {
 						method: 'GET',
@@ -40,24 +42,30 @@ export const authOptions: NextAuthOptions = {
 						lastName: lastName,
 						password: hashedPassword,
 					};
+					// console.log('userbody', userBody);
 					result = await fetch(api_users, {
 						method: 'POST',
 						body: JSON.stringify(userBody),
 						headers: { 'Content-Type': 'application/json' },
 					});
+					// console.log('result', result);
+				}
+				// API throws 400 if the user already exists in the DB (by email)
+				if (result?.status === 400) {
+					// console.log('400');
+					throw Error('A user with that email already exists!');
 				}
 				const user: User = await result?.json();
-				// Return null if user data could not be retrieved
-				if (result?.status === 400) {
-					throw Error('User already exists!');
-				}
-				// If password entered does not equal hashed password, return null
+				// console.log('user', user);
+				// Throw error If password entered does not equal hashed password
 				const isPasswordValid = await verifyPassword(password, user.password);
 				if (!isPasswordValid) {
-					throw Error('Password does not match!');
+					// console.log('password thing');
+					throw Error('Password given and password stored do not match!');
 				}
 				// If no error and we have user data, return every property except password
 				const { password: omittedPassword, ...userReturned } = { ...user };
+				// // console.log('userReturned', userReturned);
 				return userReturned;
 			},
 		}),
